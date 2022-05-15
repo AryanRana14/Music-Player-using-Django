@@ -1,0 +1,33 @@
+{%extends 'musicbeats/basic.htm'%}
+{% block title%}MusicBeats{% endblock %}
+
+{% block body %}
+{% load static %} 
+<h1 style=" text-align: center; font-family: 'emoji';  font-weight: bolder;">Your PlayList</h1>
+
+{% if song|length < 1 %}
+        <h3 style="text-align: center; padding-top: 5%;">You have no Video in your Watch Later</h3>
+{% endif %}
+
+<div class="container"style="  padding-top:2%;  padding-left: 7%; padding-bottom: 2%;">
+{% for i in song reversed %}
+<div class="card mb-3" style="max-width: 940px; padding-top: 0%;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="/media/{{i.image}}" class="card-img" alt="..." style="height:200px; object-fit: cover; border: solid;";>
+      </div>
+      <div class="col-md-8" style="border: dashed;">
+        <div class="card-body">
+          <h5 class="card-title" style=" font-weight: bold;">{{i.name}}</h5>
+          <p class="card-text">{{i.singer}}</p>
+          <p class="card-text">{{i.tags}}</p>
+          <a href="/musicbeats/songs/{{i.song_id}}"><button class="btn btn-success">Listen Song</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}
